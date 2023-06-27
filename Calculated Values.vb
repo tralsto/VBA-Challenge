@@ -40,7 +40,11 @@ Sub CalculatedValues()
          ws.Cells(3, 16).Value = "Greatest % Decrease"
          ws.Cells(4, 16).Value = "Greatest Total Volume"
 
+<<<<<<< HEAD
          ' Print ticker symbols of calculated values in new table
+=======
+         ' Print ticker symbols of calculated values in the new table
+>>>>>>> origin/main
          ticker_symbol = ws.Cells(Calculated_Values_Row, "Q").Value
 
          'Calculate Greatest Percent Increase
