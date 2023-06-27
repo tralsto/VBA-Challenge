@@ -2,7 +2,7 @@ Sub TickerSymbol()
 
     ' Create needed variables for ticker symbol
     Dim ticker_symbol As String
-    Dim TotalTickerSymbol As String
+
     Dim LastRow As LongLong
 
     ' Create variable for total stock volume and the row
@@ -13,7 +13,7 @@ Sub TickerSymbol()
      'Loop through all of the sheets in the wb
      For Each ws In Worksheets
 
-      'Find the last row of each sheet & subtract 1 to return w/o header
+      'Find the last row of each sheet
       LastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
       
       ' Reset the value for the total stock row
