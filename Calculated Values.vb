@@ -40,8 +40,8 @@ Sub CalculatedValues()
          ws.Cells(3, 16).Value = "Greatest % Decrease"
          ws.Cells(4, 16).Value = "Greatest Total Volume"
 
-         ' Print ticker symbols of calculated values in new table
-         ws.Cells(Calculated_Values_Row, "Q").Value = ticker_symbol
+         ' Print ticker symbols of calculated values in the new table
+         ticker_symbol = ws.Cells(Calculated_Values_Row, "Q").Value
 
          'Calculate Greatest Percent Increase
          Greatest_Percent_Inc = WorksheetFunction.Max(ws.Range("L:L"))
