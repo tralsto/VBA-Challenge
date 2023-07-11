@@ -5,8 +5,11 @@ Sub YearlyPercentChange()
  Dim ticker_symbol As String
  Dim Opening_Price As Double
  Dim Closing_Price As Double
- Dim LastRowOpen As Long
- Dim LastRowClose As Long
+ Dim LastRowOpen As Double
+ Dim LastRowClose As Double
+ Dim y As Double
+ Dim k As Double
+ k = 0 
 
  ' Create variables for the new summary column
  Dim Yearly_Change As Double
@@ -18,22 +21,24 @@ Sub YearlyPercentChange()
 
    ' Set last row for each Opening and Closing Price Columns
    LastRowOpen = ws.Cells(ws.Rows.Count, 3).End(xlUp).Row
-   LastRowClose = ws.Cells(ws.Rows.Count, 6).End(xlUp).Row
 
    ' Reset value for new columns
    Yearly_Change = 0
    Summary_Table_Row = 2
+   y = 2
+   
 
     ' Loop through stock market data
     For i = 2 To LastRowOpen
 
       ' Set Ticker Column conditional to begin loop and register when next ticker has been reached
       If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
-
+        k = k + 1
         ' Set column values
         ticker_symbol = ws.Cells(i, 1).Value
-        Opening_Price = ws.Cells(i, 3).Value
+        Opening_Price = ws.Cells(y, 3).Value
         Closing_Price = ws.Cells(i, 6).Value
+        
 
         'Add headers to summary table
         ws.Cells(1, 10).Value = "Ticker"
@@ -44,11 +49,13 @@ Sub YearlyPercentChange()
         ws.Cells(Summary_Table_Row, "J").Value = ticker_symbol
 
         ' Determine Yearly Change by taking the Closing Price from Opening Price
-        Yearly_Change = (Closing_Price - Opening_Price)
+        Yearly_Change = Closing_Price - Opening_Price
 
         ' Print Yearly Change values into summary chart
         ws.Cells(Summary_Table_Row, "K").Value = Yearly_Change
- 
+
+        
+
         ' Format Yearly Change column so >0 will be green and <0 will be red
         If Yearly_Change >= 0 Then
 
@@ -60,8 +67,14 @@ Sub YearlyPercentChange()
 
         End If
 
+        If Opening_Price <> 0 Then
+        
+
         'Determine Percent Change from the Yearly Change data
         Percent_Change = (Yearly_Change / Opening_Price) * 100
+        Else
+        Percent_Change = 0 
+        End If
 
         ' Print percent change values into summary chart
         ws.Cells(Summary_Table_Row, "L").Value = Percent_Change
@@ -69,8 +82,12 @@ Sub YearlyPercentChange()
         ' Add a row to the summary table
         Summary_Table_Row = Summary_Table_Row + 1
 
+        Yearly_Change = 0
+        Percent_Change = 0
+        
+         y = y + k
       End If
-
+    
   
     Next i
    
