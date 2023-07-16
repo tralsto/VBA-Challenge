@@ -25,7 +25,7 @@ Sub StockData()
     total_stock_volume = 0
     Summary_Table_Row = 2
   
-    'First Opening Price
+    'Set first opening price
     Opening_Price = ws.Cells(2,3).Value
 
       ' Loop through all of the ticker symbols
