@@ -38,9 +38,7 @@ Sub StockData()
 
           ' Set column values
           ticker_symbol = ws.Cells(i, 1).Value
-         
           Closing_Price = ws.Cells(i, 6).Value
-         
           Yearly_Change = Closing_Price - Opening_Price
 
           ' Print the values in the first summary chart
@@ -50,14 +48,11 @@ Sub StockData()
           ' Format Yearly Change column so >0 will be green and <0 will be red
           If Yearly_Change >= 0 Then
             ws.Cells(Summary_Table_Row, "K").Interior.ColorIndex = 4
-
           ElseIf Yearly_Change < 0 Then
             ws.Cells(Summary_Table_Row, "K").Interior.ColorIndex = 3
-
           End If
 
           'Determine Percent Change from the Yearly Change data
-
           If Opening_Price <> 0 Then 
           Percent_Change = (Yearly_Change / Opening_Price)
           Else Percent_Change = 0 
@@ -79,7 +74,6 @@ Sub StockData()
         End If
       Next i
 
-    
       ' Loop through the summary table
       For i = 2 To LastRow
         
